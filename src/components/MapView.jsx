@@ -5,6 +5,9 @@ import "leaflet-routing-machine";
 import { useNavigate } from 'react-router-dom';
 const MapView = () => {
     const navigate = useNavigate();
+    const parkingLots = useSelector(
+        (state) => state.parking.parkingLots
+    )
     return (
         <MapContainer
             center={[23.5859, 58.4059]}
