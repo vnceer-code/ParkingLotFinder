@@ -18,7 +18,7 @@ const ParkingDetails = () => {
                 <div style={{ background: "red", padding: "20px" }}>A2</div>
                 <div style={{ background: "green", padding: "20px" }}>A3</div>
                 <div style={{ background: "green", padding: "20px" }}>A4</div>
-            </div>
+            </div>        
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { parkingLots } from '../data/parkingData';
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet-routing-machine";
 import { useNavigate } from 'react-router-dom';
 const MapView = () => {
     const navigate = useNavigate();
