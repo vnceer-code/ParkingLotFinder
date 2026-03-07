@@ -13,7 +13,7 @@ const Home = () => {
     }, [])
     return (
         <div>
-            <h1>Parking Finder</h1>
+            <h1>Parking Lot Finder</h1>
             <MapView />
         </div>
     )
