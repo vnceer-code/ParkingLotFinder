@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
+import parkingReducer from "../features/parkingSlice";
 
-const store = configureStore({
+export const store = configureStore({
     reducer :{
         parking : parkingReducer
 
