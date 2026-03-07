@@ -55,7 +55,7 @@ const ParkingDetails = () => {
 
             <h2>Available Slots</h2>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(8, 80px)", gap: "10px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(16, 80px)", gap: "10px" }}>
                 {slots.map((slot) => (
                     <div
                         key={slot.id}
