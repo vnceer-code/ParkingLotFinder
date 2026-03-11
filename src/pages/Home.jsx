@@ -1,4 +1,4 @@
-import React, { use } from 'react'
+import React from 'react'
 import MapView from '../components/MapView'
 import { parkingLots } from '../data/parkingData';
 import { useDispatch } from 'react-redux';
@@ -10,7 +10,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(setParkingLots(parkingLots));
-    }, [])
+    }, [dispatch])
     return (
         <div>
             <h1>Parking Lot Finder</h1>

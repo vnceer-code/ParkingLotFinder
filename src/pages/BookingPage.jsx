@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch ,useSelector } from "react-redux";
 import { addBooking } from "../features/bookingSlice";
 
 const BookingPage = () => {
@@ -8,8 +8,12 @@ const BookingPage = () => {
   const { id, slotId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const parking = useSelector(
+    (state) => state.parking.selectedParking
+  )
 
-  const confirmBooking = () => {
+  console.log(parking);
+  const handleConfirmBooking = () => {
 
     const stored = JSON.parse(localStorage.getItem("parkingSlots")) || {};
 
@@ -30,21 +34,35 @@ const BookingPage = () => {
     navigate(`/parking/${id}`);
 
   };
-
-  dispatch(addBooking({
+  const bookingData = {
     parkingId: id,
-    slotId: slotId
-  }))
+    slotId: slotId,
+    parkingName: parking?.name,
+    time: new Date().toLocaleTimeString()
+  };
+  dispatch(addBooking(bookingData));
+
 
   return (
 
-    <div>
+    <div className="p-6 max-w-md mx-auto">
 
-      <h1>Booking Confirmation</h1>
+      <h1 className="text-2xl font-bold mb-4">
+        Confirm Booking
+      </h1>
 
-      <p>Selected Slot: {slotId}</p>
+      <p className="mb-2">
+        Parking: <strong>{parking?.name}</strong>
+      </p>
 
-      <button onClick={confirmBooking}>
+      <p className="mb-4">
+        Slot: <strong>{slotId}</strong>
+      </p>
+
+      <button
+        onClick={handleConfirmBooking}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
         Confirm Booking
       </button>
 

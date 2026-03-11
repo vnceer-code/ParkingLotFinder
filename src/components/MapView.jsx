@@ -24,36 +24,40 @@ const MapView = () => {
 
     )
     console.log(parkingLots);
+    //  
     return (
-        <MapContainer className="w-full h-[500px] rounded-xl shadow-lg"
-            center={[23.5859, 58.4059]}
-            zoom={13}
-           
-        >
-            <TileLayer
-                attribution="&copy; OpenStreetMap contributors"
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+        <div className="w-full h-[500px]" >
+            <MapContainer
+                center={[23.5859, 58.4059]}
+                zoom={13}
+                className="w-full h-full"
+               
+            >
+                <TileLayer
+                    attribution="&copy; OpenStreetMap contributors"
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
 
-            {parkingLots.map((lot) => (
-                <Marker key={lot.id} position={lot.location}>
-                    <Popup>
-                        <div>
-                            <h3>{lot.name}</h3>
-                            <button
-                                onClick={() => {
-                                    dispatch(setSelectedParking(lot));
-                                    navigate(`/parking/${lot.id}`);
-                                }}
-                            >
-                                View Slots
-                            </button>
-                        </div>
-                    </Popup>
-                </Marker>
-            ))}
+                {parkingLots.map((lot) => (
+                    <Marker key={lot.id} position={lot.location}>
+                        <Popup>
+                            <div>
+                                <h3>{lot.name}</h3>
+                                <button
+                                    onClick={() => {
+                                        dispatch(setSelectedParking(lot));
+                                        navigate(`/parking/${lot.id}`);
+                                    }}
+                                >
+                                    View Slots
+                                </button>
+                            </div>
+                        </Popup>
+                    </Marker>
+                ))}
 
-        </MapContainer>
+            </MapContainer>
+        </div>
     )
 }
 

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SlotGrid = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
   const [slots, setSlots] = useState([]);
+  const parking = useSelector(
+    (state) => state.parking.selectedParking
+  )
 
   function generateSlots(totalSlots) {
     console.log(totalSlots);
@@ -41,7 +45,7 @@ const SlotGrid = () => {
     } else {
 
       // create new slots if not exist
-      const newSlots = generateSlots(20);
+      const newSlots = generateSlots(parking?.totalslots || 0);
 
       stored[id] = newSlots;
 
@@ -55,7 +59,7 @@ const SlotGrid = () => {
 
   return (
 
-    <div className="grid grid-cols-6 gap-4 mt-6">
+    <div className="grid grid-cols-10 gap-4 mt-6">
 
       {slots.map((slot) => (
         <div
