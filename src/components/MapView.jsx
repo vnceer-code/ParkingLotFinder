@@ -1,6 +1,5 @@
 import React from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet-routing-machine";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import L from "leaflet";
@@ -26,10 +25,10 @@ const MapView = () => {
     )
     console.log(parkingLots);
     return (
-        <MapContainer className='rounded-xl border w-full h-[500px] shadow-lg overflow-hidden'
+        <MapContainer className="w-full h-[500px] rounded-xl shadow-lg"
             center={[23.5859, 58.4059]}
             zoom={13}
-            style={{ height: "500px", width: "100%" }}
+           
         >
             <TileLayer
                 attribution="&copy; OpenStreetMap contributors"
