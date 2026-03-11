@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch ,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from "../features/bookingSlice";
 
 const BookingPage = () => {
@@ -45,7 +45,7 @@ const BookingPage = () => {
 
   return (
 
-    <div className="p-6 max-w-md mx-auto">
+    <div className="p-6 max-w-md mx-auto shadow-xl rounded-lg bg-white mt-20 text-center">
 
       <h1 className="text-2xl font-bold mb-4">
         Confirm Booking

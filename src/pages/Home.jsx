@@ -2,19 +2,41 @@ import React from 'react'
 import MapView from '../components/MapView'
 import { parkingLots } from '../data/parkingData';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { setParkingLots } from '../features/parkingSlice';
+import SearchBar from '../components/SearchBar';
+import ParkingCard from '../components/ParkingCard';
 
 const Home = () => {
     const dispatch = useDispatch();
-
+    const [filteredLots, setFilteredLots] = useState(parkingLots)
     useEffect(() => {
-        dispatch(setParkingLots(parkingLots));
-    }, [dispatch])
+        dispatch(setParkingLots(filteredLots));
+    }, [dispatch, filteredLots])
+    const handleSearch = (query) => {
+
+        const results = parkingLots.filter((lot) =>
+            lot.name.toLowerCase().includes(query.toLowerCase())
+        )
+
+        setFilteredLots(results)
+
+    }
+
     return (
-        <div>
-            <h1>Parking Lot Finder</h1>
+        <div className="max-w-6xl mx-auto p-6">
+
+            <h1 className="text-2xl font-bold mb-4">
+                Parking Lot Finder
+            </h1>
+
+            <SearchBar onSearch={handleSearch} />
             <MapView />
+            <h2 className="text-xl font-semibold mt-6 mb-3">
+                Nearby Parking
+            </h2>
+
+            <ParkingCard />
         </div>
     )
 }
