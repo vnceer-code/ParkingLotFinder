@@ -26,13 +26,13 @@ const Home = () => {
     return (
         <div className="max-w-6xl mx-auto p-6">
 
-            <h1 className="text-2xl font-bold mb-4">
+            <h1 className="text-2xl font-bold mb-4 text-center text-blue-600">
                 Parking Lot Finder
             </h1>
 
             <SearchBar onSearch={handleSearch} />
             <MapView />
-            <h2 className="text-xl font-semibold mt-6 mb-3">
+            <h2 className="text-xl font-semibold mt-6 mb-5 text-center text-blue-600">
                 Nearby Parking
             </h2>
 
