@@ -47,7 +47,7 @@ const BookingPage = () => {
 
     <div className="p-6 max-w-md mx-auto shadow-xl rounded-lg bg-white mt-20 text-center">
 
-      <h1 className="text-2xl font-bold mb-4">
+      <h1 className="text-2xl font-bold mb-4 text-blue-600">
         Confirm Booking
       </h1>
 
