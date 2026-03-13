@@ -7,6 +7,7 @@ import { setParkingLots } from '../features/parkingSlice';
 import SearchBar from '../components/SearchBar';
 import ParkingCard from '../components/ParkingCard';
 import FilterBar from '../components/FilterBar';
+import Navbar from '../components/Navbar';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Home = () => {
             <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">
                 Parking Lot Finder
             </h1>
-
+            <Navbar />
             <SearchBar onSearch={handleSearch} />
             <FilterBar />
             <MapView />
