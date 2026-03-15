@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setSelectedParking } from "../features/parkingSlice";
 import { getAvailableSlots } from "../utils/slotUtils";
-import { setLocationFilter, setAvailabilityFilter, setDistanceFilter, setPriceFilter } from "../features/parkingSlice";
+import { setSearchQuery, setLocationFilter, setAvailabilityFilter, setDistanceFilter, setPriceFilter } from "../features/parkingSlice";
 
 const ParkingCard = () => {
 
@@ -16,12 +16,22 @@ const ParkingCard = () => {
   const filters = useSelector(
     (state) => state.parking.filters
   );
+  const searchQuery = useSelector(
+    (state) => state.parking.searchQuery
+  );
 
   const handleClick = (lot) => {
     dispatch(setSelectedParking(lot));
     navigate(`/parking/${lot.id}`);
   };
   const filteredLots = parkingLots.filter((lot) => {
+    if (
+      searchQuery &&
+      !lot.name.toLowerCase().includes(searchQuery.toLowerCase())
+    ) {
+      return false
+    }
+
 
     if (filters.location && !lot.name.toLowerCase().includes(filters.location)) {
       return false
@@ -47,7 +57,7 @@ const ParkingCard = () => {
   })
 
   const lotsToDisplay =
-    filters.location || filters.price || filters.distance || filters.available
+    filters.location || filters.price || filters.distance || filters.available || searchQuery
       ? filteredLots
       : parkingLots;
   return (

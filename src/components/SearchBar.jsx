@@ -1,38 +1,35 @@
-import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchQuery } from "../features/parkingSlice";
+import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
 
+  const dispatch = useDispatch();
   const [query, setQuery] = useState("");
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    onSearch(query);
+  const handleChange = (e) => {
+
+    const value = e.target.value;
+
+    setQuery(value);
+
+    dispatch(setSearchQuery(value));
+
   };
 
   return (
-
-    <form
-      onSubmit={handleSearch}
-      className="flex gap-3 mb-4"
-    >
+    <div className="relative">
+      <FaSearch className="absolute left-3 top-3 text-gray-400" />
 
       <input
         type="text"
-        placeholder="Search parking by name or area..."
+        placeholder="Search parking here..."
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        className="border p-2 rounded w-full"
+        onChange={handleChange}
+        className=" border border-gray-100 p-2 rounded-xl w-full focus:outline-none focus:border-2 focus:border-blue-400 bg-gray-100 "
       />
-
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        Search
-      </button>
-
-    </form>
-
+    </div >
   );
 
 };

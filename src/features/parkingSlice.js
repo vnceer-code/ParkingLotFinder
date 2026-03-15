@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     parkingLots: [],
     selectedParking: null,
+    searchQuery: "",
     filters: {
         location: "",
         price: "",
@@ -22,6 +23,9 @@ const parkinSlice = createSlice({
         setSelectedParking: (state, action) => {
             state.selectedParking = action.payload;
         },
+        setSearchQuery: (state, action) => {
+            state.searchQuery = action.payload
+        },
         setLocationFilter: (state, action) => {
             state.filters.location = action.payload
         },
@@ -40,7 +44,7 @@ const parkinSlice = createSlice({
     }
 });
 
-export const { setParkingLots, setSelectedParking, setLocationFilter,
+export const { setParkingLots, setSelectedParking, setSearchQuery, setLocationFilter,
     setPriceFilter,
     setDistanceFilter,
     setAvailabilityFilter } = parkinSlice.actions;

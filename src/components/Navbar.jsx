@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../features/authSlice";
-
+import logo from "../assets/logo.png";
+import SearchBar from "./SearchBar";
 const Navbar = () => {
 
   const dispatch = useDispatch();
@@ -13,19 +14,24 @@ const Navbar = () => {
 
   return (
 
-    <nav className="bg-green-600 text-white shadow">
+    <nav className="bg-white border-b border-gray-300">
 
       <div className="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
 
-        <h1 className="text-xl font-bold">
-             Parking Finder
+        <h1 className="text-xl font-bold flex items-center gap-2">
+          <img src={logo} alt="ParkFinder Logo" className="h-8 w-8" />
+          ParkFinder
         </h1>
+        <div className="w-1/3 ">
+          <SearchBar />
+        </div>
 
         <div className="flex gap-6 items-center">
 
           <Link to="/">Home</Link>
 
-          <Link to="/bookings">My Bookings</Link>
+          <Link to="/bookings"> Bookings</Link>
+          <Link to="/bookings"> Favourites</Link>
 
           {user ? (
 
