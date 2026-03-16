@@ -8,6 +8,7 @@ import SearchBar from '../components/SearchBar';
 import ParkingCard from '../components/ParkingCard';
 import FilterBar from '../components/FilterBar';
 import Navbar from '../components/Navbar';
+import SubNavbar from '../components/SubNavbar';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -26,18 +27,16 @@ const Home = () => {
     }
 
     return (
-        <div className="max-w-6xl mx-auto p-6">
+        <div className=" mx-auto">
 
-            <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">
-                ParkFinder
-            </h1>
+            
             <Navbar />
-            <SearchBar onSearch={handleSearch} />
-            <FilterBar />
-            <MapView />
+            <SubNavbar />
+            {/* <FilterBar /> */}
+            {/* <MapView />
             <h2 className="text-xl font-semibold mt-6 mb-5 text-center text-blue-600">
                 Nearby Parking
-            </h2>
+            </h2> */}
 
             <ParkingCard />
         </div>
