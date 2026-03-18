@@ -1,11 +1,12 @@
 import React from "react";
-import { FiMap } from "react-icons/fi";
+import { FiList, FiMap } from "react-icons/fi";
 import { MdFilterList } from "react-icons/md";
-import { setShowFilterSidebar } from "../features/parkingSlice";
-import { useDispatch } from "react-redux";
+import { setShowFilterSidebar, setShowMap } from "../features/parkingSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const SubNavbar = () => {
     const dispatch = useDispatch();
+    const showMap = useSelector((state) => state.parking.showMap);
 
     return (
 
@@ -26,11 +27,13 @@ const SubNavbar = () => {
 
                 </button>
 
-                <button className="flex items-center  text-gray-600 gap-2 border border-gray-400 focus:bg-gray-100 cursor-pointer px-4 py-2 rounded-lg hover:bg-gray-100 transition">
+                <button className="flex items-center  text-gray-600 gap-2 border border-gray-400 focus:bg-gray-100 cursor-pointer px-4 py-2 rounded-lg hover:bg-gray-100 transition"
+                    onClick={() => dispatch(setShowMap(!showMap))}
+                >
 
-                    <FiMap />
+                    {showMap ? <FiList /> : <FiMap />}
 
-                    Map
+                    {showMap ? "List" : "Map"}
 
                 </button>
 

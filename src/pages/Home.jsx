@@ -1,5 +1,4 @@
 import React from 'react'
-import MapView from '../components/MapView'
 import { parkingLots } from '../data/parkingData';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -13,9 +12,11 @@ import SubNavbar from '../components/SubNavbar';
 import { setShowFilterSidebar } from '../features/parkingSlice';
 import FilterSidebar from '../components/FilterSideBar';
 import AuthModal from '../components/AuthModal';
+import MapView from '../components/MapView';
 
 const Home = () => {
     const showAuth = useSelector((state) => state.auth.showAuthModal);
+    const showMap = useSelector((state) => state.parking.showMap);
     const showFilter = useSelector(
         (state) => state.parking.showFilterSidebar
     );
@@ -50,7 +51,7 @@ const Home = () => {
                 Nearby Parking
             </h2> */}
 
-            <ParkingCard />
+            {showMap ? <MapView /> : <ParkingCard />}
             {showAuth && (
                 <AuthModal closeModal={() => dispatch(setShowAuthModal(false))} />
             )}

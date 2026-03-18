@@ -37,7 +37,7 @@ const authSlice = createSlice({
         },
 
         logout: (state) => {
-            state.currentUser = null
+            state.loggedinUser = null
             localStorage.removeItem("currentUser")
         },
         setShowAuthModal: (state, action) => {

@@ -27,11 +27,11 @@ const MapView = () => {
     console.log(parkingLots);
     //  
     return (
-        <div className="w-full h-[500px]" >
+        <div className="w-full h-[500px] rounded-lg py-4 px-6" >
             <MapContainer
                 center={[23.5859, 58.4059]}
                 zoom={13}
-                className="w-full h-full"
+                className="w-full h-full rounded-lg"
 
             >
                 <TileLayer

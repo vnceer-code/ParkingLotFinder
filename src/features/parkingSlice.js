@@ -4,6 +4,7 @@ const initialState = {
     parkingLots: [],
     selectedParking: null,
     searchQuery: "",
+    showMap: false,
     filters: {
         location: "",
         price: "",
@@ -44,6 +45,9 @@ const parkinSlice = createSlice({
         },
         setShowFilterSidebar: (state, action) => {
             state.showFilterSidebar = action.payload
+        },
+        setShowMap: (state, action) => {
+            state.showMap = action.payload
         }
     }
 });
@@ -51,6 +55,6 @@ const parkinSlice = createSlice({
 export const { setParkingLots, setSelectedParking, setSearchQuery, setLocationFilter,
     setPriceFilter,
     setDistanceFilter,
-    setAvailabilityFilter, setShowFilterSidebar } = parkinSlice.actions;
+    setAvailabilityFilter, setShowFilterSidebar, setShowMap } = parkinSlice.actions;
 
 export default parkinSlice.reducer;
