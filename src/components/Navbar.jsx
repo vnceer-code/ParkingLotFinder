@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../features/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowAuthModal } from "../features/authSlice";
+
 import logo from "../assets/logo.png";
 import SearchBar from "./SearchBar";
 const Navbar = () => {
@@ -27,11 +27,16 @@ const Navbar = () => {
           </div>
 
           <div className="flex gap-4">
-            <button className="px-4 py-2 text-gray-600 font-medium focus:bg-gray-100 rounded-lg hover:bg-gray-100 transition text-gray-600 cursor-pointer">
+            <button className="px-4 py-2 text-gray-600 font-medium focus:bg-gray-100 rounded-lg hover:bg-gray-100 transition text-gray-600 cursor-pointer"
+              onClick={() => dispatch(setShowAuthModal(true))}
+              // className="bg-blue-600 text-white px-4 py-2 rounded"
+            >
               Sign In
             </button>
 
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg cursor-pointer">
+            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg cursor-pointer"
+            onClick={() => dispatch(setShowAuthModal(true))}
+            >
               Get Started
             </button>
           </div>

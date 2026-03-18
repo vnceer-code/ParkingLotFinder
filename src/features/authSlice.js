@@ -4,7 +4,8 @@ const authSlice = createSlice({
     name: "auth",
 
     initialState: {
-        user: null
+        user: null,
+        showAuthModal: false
     },
 
     reducers: {
@@ -20,10 +21,13 @@ const authSlice = createSlice({
         logout: (state) => {
             state.user = null
             localStorage.removeItem("user")
+        },
+        setShowAuthModal: (state, action) => {
+            state.showAuthModal = action.payload
         }
     }
 });
 
-export const { login, logout , signup } = authSlice.actions;
+export const { login, logout, signup, setShowAuthModal } = authSlice.actions;
 
 export default authSlice.reducer;

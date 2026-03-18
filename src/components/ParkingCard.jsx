@@ -62,6 +62,8 @@ const ParkingCard = () => {
     filters.location || filters.price || filters.distance || filters.available || searchQuery
       ? filteredLots
       : parkingLots;
+
+  console.log(lotsToDisplay);
   return (
 
     <div className="grid grid-cols-1 md:grid-cols-3">
@@ -90,8 +92,9 @@ const ParkingCard = () => {
           //   </p>
 
           // </div>
-          <div className="flex justify-center items-center px-10 py-10">
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden w-[600px] cursor-pointer">
+          <div className="flex justify-center items-center px-10 py-10" key={lot.id}
+            onClick={() => handleClick(lot)} >
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden w-[600px] cursor-pointer" >
 
               {/* Image Section */}
               <div className="relative">
@@ -104,7 +107,7 @@ const ParkingCard = () => {
 
                 {/* Price Badge */}
                 <div className="absolute top-3 left-3 bg-white px-3 py-1 rounded-xl font-semibold text-gray-800 shadow">
-                  OMR10/hr
+                  OMR{lot.price}/hr
                 </div>
 
                 {/* Favorite Icon */}
@@ -121,7 +124,7 @@ const ParkingCard = () => {
                 <div className="flex justify-between items-center">
 
                   <h3 className="text-lg font-semibold text-gray-800">
-                   {lot.name}
+                    {lot.name}
                   </h3>
 
                   <div className="flex items-center gap-1 text-yellow-500">

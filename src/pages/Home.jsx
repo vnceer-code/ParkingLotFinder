@@ -1,16 +1,24 @@
 import React from 'react'
 import MapView from '../components/MapView'
 import { parkingLots } from '../data/parkingData';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setParkingLots } from '../features/parkingSlice';
+import { setShowAuthModal } from '../features/authSlice';
 import SearchBar from '../components/SearchBar';
 import ParkingCard from '../components/ParkingCard';
 import FilterBar from '../components/FilterBar';
 import Navbar from '../components/Navbar';
 import SubNavbar from '../components/SubNavbar';
+import { setShowFilterSidebar } from '../features/parkingSlice';
+import FilterSidebar from '../components/FilterSideBar';
+import AuthModal from '../components/AuthModal';
 
 const Home = () => {
+    const showAuth = useSelector((state) => state.auth.showAuthModal);
+    const showFilter = useSelector(
+        (state) => state.parking.showFilterSidebar
+    );
     const dispatch = useDispatch();
     const [filteredLots, setFilteredLots] = useState(parkingLots)
     useEffect(() => {
@@ -29,9 +37,13 @@ const Home = () => {
     return (
         <div className=" mx-auto">
 
-            
+
             <Navbar />
             <SubNavbar />
+            <FilterSidebar
+                isOpen={showFilter}
+                closeSidebar={() => dispatch(setShowFilterSidebar(false))}
+            />
             {/* <FilterBar /> */}
             {/* <MapView />
             <h2 className="text-xl font-semibold mt-6 mb-5 text-center text-blue-600">
@@ -39,6 +51,9 @@ const Home = () => {
             </h2> */}
 
             <ParkingCard />
+            {showAuth && (
+                <AuthModal closeModal={() => dispatch(setShowAuthModal(false))} />
+            )}
         </div>
     )
 }
