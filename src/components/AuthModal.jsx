@@ -1,10 +1,34 @@
 import React, { useState } from "react";
 import { FiEye, FiX } from "react-icons/fi";
+import { useDispatch } from "react-redux";
+import { signup, login } from "../features/authSlice";
+import { setShowAuthModal } from "../features/authSlice";
+import { useSelector } from "react-redux";
 
 const AuthModal = ({ closeModal }) => {
 
     const [isRegister, setIsRegister] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: ""
+    })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(isRegister ? signup(formData) : login(formData));
+        closeModal();
+    }
 
     return (
 
@@ -52,41 +76,53 @@ const AuthModal = ({ closeModal }) => {
                 </div>
 
                 {/* Form */}
+                <form action="" onSubmit={handleSubmit}>
+                    {isRegister && (
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="Full name"
+                            className="w-full border rounded-lg px-3 py-2 mb-3"
+                        />
+                    )}
 
-                {isRegister && (
                     <input
-                        type="text"
-                        placeholder="Full name"
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Email address"
                         className="w-full border rounded-lg px-3 py-2 mb-3"
                     />
-                )}
 
-                <input
-                    type="email"
-                    placeholder="Email"
-                    className="w-full border rounded-lg px-3 py-2 mb-3"
-                />
+                    <div className="relative">
 
-                <div className="relative">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Password"
+                            className="w-full border rounded-lg px-3 py-2"
+                        />
 
-                    <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Password"
-                        className="w-full border rounded-lg px-3 py-2"
-                    />
+                        <FiEye
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-3 text-gray-400 cursor-pointer"
+                        />
 
-                    <FiEye
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-3 text-gray-400 cursor-pointer"
-                    />
+                    </div>
 
-                </div>
+                    <button className="w-full bg-blue-600 text-white py-2 rounded-lg mt-4 hover:bg-blue-700 cursor-pointer">
 
-                <button className="w-full bg-blue-600 text-white py-2 rounded-lg mt-4 hover:bg-blue-700 cursor-pointer">
+                        {isRegister ? "Register" : "Sign In"}
 
-                    {isRegister ? "Register" : "Sign In"}
+                    </button>
+                </form>
 
-                </button>
+
 
             </div>
 

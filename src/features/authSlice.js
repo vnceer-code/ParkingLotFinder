@@ -1,26 +1,44 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const storedUsers = JSON.parse(localStorage.getItem("user"));
+const currentUser = JSON.parse(localStorage.getItem("currentUser")); null;
+
 const authSlice = createSlice({
     name: "auth",
 
     initialState: {
-        user: null,
+        user: storedUsers || [],
+        loggedinUser: currentUser || null,
         showAuthModal: false
     },
 
     reducers: {
         signup: (state, action) => {
-            localStorage.setItem("user", JSON.stringify(action.payload));
-            state.user = action.payload;
+            const { email } = action.payload;
+            const existingUser = state.user.find((u) => u.email === email);
+            if (existingUser) {
+                alert("User already exists with this email");
+                return;
+            }
+            state.user.push({ id: Date.now(), ...action.payload });
+            localStorage.setItem("user", JSON.stringify(state.user));
+
         },
         login: (state, action) => {
-            state.user = action.payload
-            localStorage.setItem("user", JSON.stringify(action.payload))
+            const { email, password } = action.payload;
+            const existingUser = state.user.find((u) => u.email === email && u.password === password);
+            if (existingUser) {
+                state.loggedinUser = existingUser;
+                localStorage.setItem("currentUser", JSON.stringify(existingUser));
+            } else {
+                alert("Invalid email or password");
+            }
+
         },
 
         logout: (state) => {
-            state.user = null
-            localStorage.removeItem("user")
+            state.currentUser = null
+            localStorage.removeItem("currentUser")
         },
         setShowAuthModal: (state, action) => {
             state.showAuthModal = action.payload
