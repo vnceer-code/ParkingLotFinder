@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowAuthModal } from "../features/authSlice";
 import logo from "../assets/logo.png";
@@ -7,18 +7,21 @@ import { FiHeart } from "react-icons/fi";
 import { FiCalendar } from "react-icons/fi";
 import { FiLogOut } from "react-icons/fi";
 import { logout } from "../features/authSlice";
+import { FaHome } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const currentUser = useSelector(
     (state) => state.auth.loggedinUser
   );
+  const favoriteCount = useSelector((state) => state.favorites.favorites.length);
 
- 
+
 
   return (
-    <div className="border-b border-gray-300">
+    <div className="border-b border-gray-300 fixed top-0 left-0 right-0 z-50 bg-white">
       <nav className="bg-white ">
 
         <div className="px-10  py-3 flex justify-between items-center">
@@ -31,29 +34,39 @@ const Navbar = () => {
             <SearchBar />
           </div>
           {currentUser ? (<div className="flex gap-4">
-            <button className="flex items-center text-gray-600 gap-2  focus:bg-gray-100 cursor-pointer px-4 py-2 rounded-lg hover:bg-gray-100 transition"
+            <button className="flex items-center text-gray-600 relative gap-2  focus:bg-gray-100 cursor-pointer px-4 py-2 rounded-lg hover:bg-gray-100 transition"
               onClick={() => {
-                dispatch(setShowFilterSidebar(true))
+               navigate("/favourites")
               }
               }
             >
 
-              <FiHeart />
+              <FiHeart className={favoriteCount > 0 ? "text-red-500 fill-red-500" : "text-gray-600"} />
 
               Saved
+
+              {favoriteCount > 0 && (
+                <span className="min-w-5 h-5 px-1 absolute top-0 right-0 rounded-full bg-red-500 text-white text-xs font-semibold flex items-center justify-center">
+                  {favoriteCount}
+                </span>
+              )}
 
             </button>
             <button className="flex items-center text-gray-600 gap-2  focus:bg-gray-100 cursor-pointer px-4 py-2 rounded-lg hover:bg-gray-100 transition"
               onClick={() => {
-                dispatch(setShowFilterSidebar(true))
+                navigate("/bookings")
               }
               }
             >
 
-             <FiCalendar />
+              <FiCalendar />
 
               Bookings
 
+            </button>
+            <button onClick={() => { navigate("/") }} className="flex items-center text-gray-600 gap-2  focus:bg-gray-100 cursor-pointer px-4 py-2 rounded-lg hover:bg-gray-100 transition">
+
+              <FaHome className="text-xl" />
             </button>
             <button className="flex items-center text-red-500 gap-2  focus:bg-gray-100 cursor-pointer px-4 py-2 rounded-lg hover:bg-gray-100 transition"
               onClick={() => {
@@ -62,7 +75,7 @@ const Navbar = () => {
               }
             >
 
-             <FiLogOut />
+              <FiLogOut />
 
               Sign Out
 

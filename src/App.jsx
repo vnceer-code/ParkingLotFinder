@@ -6,7 +6,8 @@ import BookingPage from "./pages/BookingPage";
 import { BrowserRouter } from 'react-router-dom'
 import { Route, Routes } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
-
+import BookingsList from "./pages/BookingsList";
+import Favourites from "./pages/Favourites";
 
 const App = () => {
   return (
@@ -15,8 +16,8 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/parking/:id' element={<ProtectedRoute> <ParkingDetails /></ProtectedRoute>} />
         <Route path="/parking/:id/booking/:slotId" element={<ProtectedRoute><BookingPage /></ProtectedRoute>} />
-        {/* <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} /> */}
+        <Route path="/bookings" element={<BookingsList />} />
+        <Route path="/favourites" element={<Favourites />} />
       </Routes>
     </BrowserRouter>
   )

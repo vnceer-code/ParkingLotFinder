@@ -7,6 +7,7 @@ const initialState = {
     checkOutDate: "",
     checkOutTime: "",
     vehicleNumber: "",
+    duration: 0,
 };
 
 const bookingSlice = createSlice({
@@ -18,7 +19,7 @@ const bookingSlice = createSlice({
 
         addBooking: (state, action) => {
             state.bookings.push(action.payload)
-        }
+        },
     setCheckInDate: (state, action) => {
             state.checkInDate = action.payload;
         },
@@ -34,6 +35,9 @@ const bookingSlice = createSlice({
         setVehicleNumber: (state, action) => {
             state.vehicleNumber = action.payload;
         },
+        setDuration: (state, action) => {
+            state.duration = action.payload;
+        }
 
     }
 
@@ -43,6 +47,7 @@ export const { addBooking, setCheckInDate,
     setCheckInTime,
     setCheckOutDate,
     setCheckOutTime,
-    setVehicleNumber, } = bookingSlice.actions;
+    setVehicleNumber,
+    setDuration, } = bookingSlice.actions;
 
 export default bookingSlice.reducer;

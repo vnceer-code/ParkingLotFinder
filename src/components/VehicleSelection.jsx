@@ -1,20 +1,45 @@
-export default function VehicleSelection({ data, setData, next, back }) {
+import { useDispatch, useSelector } from "react-redux";
+import { setVehicleNumber } from "../features/bookingSlice";
+
+export default function VehicleSelection({ next, back }) {
+    const regex = /^[A-Z]{2}\s?\d{2}\s?[A-Z]{1,2}\s?\d{4}$/;
+    const dispatch = useDispatch();
+    const vehicleNumber = useSelector(
+        (state) => state.booking.vehicleNumber
+    );
+
+    const handleNext = () => {
+        if (!vehicleNumber) {
+            alert("Please enter vehicle number");
+            return;
+        }
+        if (!regex.test(vehicleNumber)) {
+            alert("Invalid vehicle number format");
+            return;
+        }
+
+        next();
+    };
+
     return (
         <div>
-            <h2 className="text-xl font-semibold mb-4">Select Vehicle</h2>
+            <h2 className="text-xl font-semibold mb-4">
+                Enter Vehicle Number
+            </h2>
 
-            <select
-                className="w-full p-2 border rounded-lg"
-                value={data.vehicle}
+            <input
+                type="text"
+                placeholder="KL 07 AB 1234"
+                className="w-full p-3 border rounded-lg uppercase"
+                value={vehicleNumber}
                 onChange={(e) =>
-                    setData({ ...data, vehicle: e.target.value })
+                    dispatch(setVehicleNumber(e.target.value.toUpperCase()))
                 }
-            >
-                <option value="">Choose</option>
-                <option value="bike">Bike</option>
-                <option value="car">Car</option>
-                <option value="truck">Truck</option>
-            </select>
+            />
+
+            <p className="text-sm text-gray-500 mt-2">
+                Example: KL 07 AB 1234
+            </p>
 
             <div className="flex gap-2 mt-4">
                 <button
@@ -25,7 +50,7 @@ export default function VehicleSelection({ data, setData, next, back }) {
                 </button>
 
                 <button
-                    onClick={next}
+                    onClick={handleNext}
                     className="w-1/2 bg-blue-500 text-white py-2 rounded-lg"
                 >
                     Next

@@ -5,12 +5,14 @@ import { setSelectedParking } from "../features/parkingSlice";
 import { getAvailableSlots } from "../utils/slotUtils";
 import { FiHeart, FiMapPin, FiClock } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
+import { toggleFavorite } from "../features/favoriteSlice";
 import { setSearchQuery, setLocationFilter, setAvailabilityFilter, setDistanceFilter, setPriceFilter } from "../features/parkingSlice";
 
 const ParkingCard = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   const parkingLots = useSelector(
     (state) => state.parking.parkingLots
@@ -21,6 +23,7 @@ const ParkingCard = () => {
   const searchQuery = useSelector(
     (state) => state.parking.searchQuery
   );
+  const favorites = useSelector(state => state.favorites.favorites);
 
   const handleClick = (lot) => {
     dispatch(setSelectedParking(lot));
@@ -70,7 +73,8 @@ const ParkingCard = () => {
 
       {lotsToDisplay.map((lot) => {
 
-        const availableSlots = getAvailableSlots(lot.id)
+        const availableSlots = getAvailableSlots(lot.id);
+        const isFav = favorites.some(item => item.id === lot.id);
 
         return (
           // <div
@@ -111,9 +115,21 @@ const ParkingCard = () => {
                 </div>
 
                 {/* Favorite Icon */}
-                <div className="absolute top-3 right-3 bg-white p-2 rounded-full shadow cursor-pointer">
+                {/* <div className="absolute top-3 right-3 bg-white p-2 rounded-full shadow cursor-pointer">
                   <FiHeart />
-                </div>
+                </div> */}
+                <button
+                  onClick={(e) => { e.stopPropagation(); dispatch(toggleFavorite(lot)); }}
+                  className="absolute top-3 right-3 p-2 rounded-full bg-white/80 backdrop-blur-md shadow-md hover:scale-110 transition"
+                >
+                  <FiHeart
+                    size={20}
+                    className={`transition ${isFav
+                      ? "text-red-500 fill-red-500"
+                      : "text-gray-400"
+                      }`}
+                  />
+                </button>
 
               </div>
 
