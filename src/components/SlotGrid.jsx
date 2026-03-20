@@ -59,15 +59,15 @@ const SlotGrid = () => {
 
   return (
 
-    <div className="grid grid-cols-10 gap-4 mt-6">
+    <div className="grid grid-cols-10 gap-4 p-6  shadow-xl rounded-lg bg-white">
 
       {slots.map((slot) => (
         <div
           key={slot.id}
           className={`p-4 text-center font-semibold rounded-lg cursor-pointer text-white transition
             ${slot.status === "available"
-              ? "bg-green-500 hover:bg-green-600"
-              : "bg-red-500"
+              ? "bg-gray-500 hover:bg-gray-600"
+              : "bg-gray-200"
             }`}
           onClick={() => handleSlotClick(slot.id)}
         >
