@@ -22,11 +22,11 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/parking/:id' element={<ProtectedRoute> <ParkingDetails /></ProtectedRoute>} />
+        <Route path='/parking/:id' element={ <ParkingDetails />} />
         <Route path="/parking/:id/booking/:slotId" element={<ProtectedRoute><BookingPage /></ProtectedRoute>} />
         <Route path="/booking-confirmation/:id" element={<ProtectedRoute><ConfirmationDone /></ProtectedRoute>} />
-        <Route path="/bookings" element={<BookingsList />} />
-        <Route path="/favourites" element={<Favourites />} />
+        <Route path="/bookings" element={<ProtectedRoute><BookingsList /></ProtectedRoute>} />
+        <Route path="/favourites" element={<ProtectedRoute><Favourites /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   )

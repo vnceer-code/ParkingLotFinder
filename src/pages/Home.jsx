@@ -45,11 +45,6 @@ const Home = () => {
                 isOpen={showFilter}
                 closeSidebar={() => dispatch(setShowFilterSidebar(false))}
             />
-            {/* <FilterBar /> */}
-            {/* <MapView />
-            <h2 className="text-xl font-semibold mt-6 mb-5 text-center text-blue-600">
-                Nearby Parking
-            </h2> */}
 
             {showMap ? <MapView /> : <ParkingCard />}
             {showAuth && (

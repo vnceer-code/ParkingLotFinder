@@ -77,25 +77,7 @@ const ParkingCard = () => {
         const isFav = favorites.some(item => item.id === lot.id);
 
         return (
-          // <div
-          //   key={lot.id}
-          //   onClick={() => handleClick(lot)}
-          //   className="border rounded-lg p-4 shadow hover:shadow-lg  cursor-pointer bg-white transition"
-          // >
-
-          //   <h3 className="text-lg font-semibold text-green-600">
-          //     {lot.name}
-          //   </h3>
-
-          //   <p className="text-gray-600 text-gray-600 font-bold ">
-          //     Total Slots: {lot.totalslots}
-          //   </p>
-
-          //   <p className="text-gray-600">
-          //     Available Slots: <span className="text-green-600 font-bold">{availableSlots}</span>
-          //   </p>
-
-          // </div>
+         
           <div className="flex justify-center items-center px-10 py-10" key={lot.id}
             onClick={() => handleClick(lot)} >
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden w-[600px] cursor-pointer" >

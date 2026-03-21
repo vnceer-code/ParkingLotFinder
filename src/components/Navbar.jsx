@@ -85,7 +85,6 @@ const Navbar = () => {
             <div className="flex gap-4">
               <button className="px-4 py-2 text-gray-600 font-medium focus:bg-gray-100 rounded-lg hover:bg-gray-100 transition text-gray-600 cursor-pointer"
                 onClick={() => dispatch(setShowAuthModal(true))}
-              // className="bg-blue-600 text-white px-4 py-2 rounded"
               >
                 Sign In
               </button>

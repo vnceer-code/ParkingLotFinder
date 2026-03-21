@@ -25,7 +25,6 @@ const MapView = () => {
 
     )
     console.log(parkingLots);
-    //  
     return (
         <div className="w-full h-[500px] rounded-lg py-4 px-6" >
             <MapContainer

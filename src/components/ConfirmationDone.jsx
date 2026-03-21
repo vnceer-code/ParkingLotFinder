@@ -26,7 +26,7 @@ const ConfirmationDone = () => {
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center px-4">
 
-            {/* ✅ Top Icon */}
+            {/* Top Icon */}
             <div className="bg-green-100 p-4 rounded-full mb-4">
                 <FiCheckCircle className="text-green-600 text-4xl" />
             </div>
