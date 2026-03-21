@@ -10,7 +10,7 @@ const SubNavbar = () => {
 
     return (
 
-        <div className="bg-white border-b border-gray-300">
+        <div className="bg-white border-b border-gray-300 fixed top-16 left-0 right-0 z-40">
 
             <div className=" mx-auto px-10 py-3 flex justify-end gap-3">
 

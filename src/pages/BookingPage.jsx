@@ -111,7 +111,6 @@ const BookingPage = () => {
 
     localStorage.setItem("parkingSlots", JSON.stringify(stored));
 
-    //navigate(`/booking-confirmation/${id}/${slotId}`);
     const finalBookingData = {
       id: Date.now(),
       parkingId: id,
@@ -136,7 +135,7 @@ const BookingPage = () => {
 
     console.log("Saved Booking:", finalBookingData);
     alert("Booking Confirmed!");
-    navigate("/")
+    navigate(`/booking-confirmation/${id}/${slotId}`);
   }
 
   return (
@@ -144,8 +143,10 @@ const BookingPage = () => {
       <Navbar />
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white w-[400px] p-6 rounded-2xl shadow-lg">
-          <h1 className="text-lg font-bold">Complete Booking</h1>
-          <p className="text-gray-500 fond-semibold mb-7">Stadium Event Parking . Slot D2</p>
+          <div className="text-center">
+            <h1 className="text-lg font-bold mb-1">Complete Booking</h1>
+            <p className="text-gray-500 fond-semibold mb-7">{parking.name} . slot {slotId}</p>
+          </div>
 
           {/* Step Indicator */}
           <div className="flex justify-between mb-6">

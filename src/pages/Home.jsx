@@ -36,7 +36,7 @@ const Home = () => {
     }
 
     return (
-        <div className=" mx-auto">
+        <div className="mx-auto pt-28">
 
 
             <Navbar />
