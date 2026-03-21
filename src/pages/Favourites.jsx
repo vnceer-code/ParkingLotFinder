@@ -26,7 +26,7 @@ const Favourites = () => {
 
           {favorites.length === 0 ? (
             <div className="text-center text-gray-500 mt-20">
-              No favourites yet. Click the ❤️ on a parking card to save it!
+              No favourites yet. Start adding some favourites!
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -39,7 +39,7 @@ const Favourites = () => {
                   <div className="relative">
                     <img src={lot.image} alt="parking" className="w-full h-40 object-cover" />
                     <div className="absolute top-3 left-3 bg-white px-3 py-1 rounded-xl font-semibold text-gray-800 shadow text-sm">
-                      OMR{lot.price}/hr
+                      OMR{lot.priceperhr}/hr
                     </div>
                     <button
                       onClick={(e) => { e.stopPropagation(); dispatch(toggleFavorite(lot)) }}

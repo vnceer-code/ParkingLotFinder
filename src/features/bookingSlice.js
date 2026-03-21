@@ -8,6 +8,7 @@ const initialState = {
     checkOutTime: "",
     vehicleNumber: "",
     duration: 0,
+    amount : 0 ,
 };
 
 const bookingSlice = createSlice({
@@ -37,6 +38,9 @@ const bookingSlice = createSlice({
         },
         setDuration: (state, action) => {
             state.duration = action.payload;
+        },
+         setTotalAmount: (state, action) => {
+            state.amount = action.payload;
         }
 
     }
@@ -48,6 +52,6 @@ export const { addBooking, setCheckInDate,
     setCheckOutDate,
     setCheckOutTime,
     setVehicleNumber,
-    setDuration, } = bookingSlice.actions;
+    setDuration,setTotalAmount } = bookingSlice.actions;
 
 export default bookingSlice.reducer;

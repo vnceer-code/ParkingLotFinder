@@ -30,7 +30,7 @@ export default function BookingsList() {
 
                     {bookings.length === 0 ? (
                         <div className="text-center text-gray-500 mt-20">
-                            No bookings yet 😴
+                            No bookings yet 
                         </div>
                     ) : (
                         <div className="space-y-5">

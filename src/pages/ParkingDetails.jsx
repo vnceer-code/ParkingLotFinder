@@ -44,7 +44,7 @@ const ParkingDetails = () => {
                     </h1>
                     <div className="flex items-center gap-2 text-white mt-2 text-sm">
                         <FiMapPin />
-                        777 Sports Arena Dr, San Francisco
+                        {parking.address} - {parking.distance} km away
                     </div>
                 </div>
                 <div className="flex  items-center justify-between  px-20 py-4 bg-white rounded-lg shadow-lg relative bottom-20">
@@ -64,14 +64,14 @@ const ParkingDetails = () => {
                     </div>
                     <div className="flex flex-col items-center gap-2 text-sm">
                         <p className="mt-2 text-gray-700 font-bold text-lg">
-                            OMR2
+                            OMR{parking?.priceperhr}
 
                         </p>
                         <p className="text-gray-400 font-bold"> Per Hour</p>
                     </div>
                     <div className="flex flex-col items-center gap-2 text-sm">
                         <p className="mt-2 text-gray-700 font-bold text-lg">
-                            OMR20
+                            OMR{parking?.priceperday}
 
                         </p>
                         <p className="text-gray-400 font-bold"> Per Day</p>

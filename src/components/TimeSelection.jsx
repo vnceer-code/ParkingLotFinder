@@ -4,12 +4,15 @@ import {
     setCheckInTime,
     setCheckOutDate,
     setCheckOutTime,
-    setDuration,
+    setDuration, setTotalAmount,
 } from "../features/bookingSlice";
 
 export default function TimeSelection({ next }) {
     const dispatch = useDispatch();
     const data = useSelector((state) => state.booking);
+    console.log(data);
+    const priceperhr = useSelector((state) => state.parking.selectedParking?.priceperhr);
+    const priceperday = useSelector((state) => state.parking.selectedParking?.priceperday);
 
     const handleNext = () => {
         const { checkInDate, checkInTime, checkOutDate, checkOutTime } = data;
@@ -23,8 +26,25 @@ export default function TimeSelection({ next }) {
         const checkOut = new Date(`${checkOutDate}T${checkOutTime}`);
         const diffMs = checkOut - checkIn;
 
-        const hours = diffMs / (1000 * 60 * 60);
-        dispatch(setDuration(hours.toFixed(2)));
+        const diffHours = diffMs / (1000 * 60 * 60);
+
+
+        let total = 0;
+
+        if (diffHours < 24) {
+           // Calculate hourly rate
+            const hours = Math.ceil(diffHours);
+            total = hours * priceperhr;
+        } else {
+            // Calculate daily rate
+            const days = Math.ceil(diffHours / 24);
+            console.log(days);
+            total = days * priceperday;
+        }
+
+
+        dispatch(setTotalAmount(total));
+        dispatch(setDuration(diffHours.toFixed(2)));
 
         if (checkOut <= checkIn) {
             alert("Invalid time");

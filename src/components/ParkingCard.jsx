@@ -111,13 +111,10 @@ const ParkingCard = () => {
 
                 {/* Price Badge */}
                 <div className="absolute top-3 left-3 bg-white px-3 py-1 rounded-xl font-semibold text-gray-800 shadow">
-                  OMR{lot.price}/hr
+                  OMR{lot.priceperhr}/hr
                 </div>
 
-                {/* Favorite Icon */}
-                {/* <div className="absolute top-3 right-3 bg-white p-2 rounded-full shadow cursor-pointer">
-                  <FiHeart />
-                </div> */}
+                
                 <button
                   onClick={(e) => { e.stopPropagation(); dispatch(toggleFavorite(lot)); }}
                   className="absolute top-3 right-3 p-2 rounded-full bg-white/80 backdrop-blur-md shadow-md hover:scale-110 transition"
@@ -136,7 +133,7 @@ const ParkingCard = () => {
               {/* Content */}
               <div className="p-4">
 
-                {/* Title + Rating */}
+                {/* Title + Rating dummy data */}
                 <div className="flex justify-between items-center">
 
                   <h3 className="text-lg font-semibold text-gray-800">
@@ -153,29 +150,39 @@ const ParkingCard = () => {
                 {/* Address */}
                 <div className="flex items-center gap-2 text-gray-500 mt-2 text-sm">
                   <FiMapPin />
-                  777 Sports Arena Dr, San Francisco
+                  {lot.address} - {lot.distance} km away
                 </div>
 
                 {/* Availability */}
-                <div className="mt-3 text-green-600 font-semibold text-sm">
+                <div className="mt-3 text-sm font-semibold"
+                  style={{ color: availableSlots === 0 ? "#ef4444" : availableSlots <= lot.totalslots * 0.3 ? "#f97316" : "#22c55e" }}>
                   {availableSlots} of {lot.totalslots} free
                 </div>
 
                 {/* Progress Bar */}
-                <div className="w-full bg-gray-200 h-2 rounded-full mt-1">
-                  <div className="bg-green-500 h-2 rounded-full w-[85%]"></div>
-                </div>
+                {(() => {
+                  const occupiedPct = Math.round(((lot.totalslots - availableSlots) / lot.totalslots) * 100);
+                  const barColor = occupiedPct >= 90 ? "bg-red-500" : occupiedPct >= 60 ? "bg-orange-400" : "bg-green-500";
+                  return (
+                    <div className="w-full bg-gray-200 h-2 rounded-full mt-1">
+                      <div
+                        className={`${barColor} h-2 rounded-full transition-all duration-500`}
+                        style={{ width: `${occupiedPct}%` }}
+                      ></div>
+                    </div>
+                  );
+                })()}
 
-                {/* Bottom Section */}
+                {/* Bottom Section dummy data*/}
                 <div className="flex justify-between items-center mt-4 text-sm">
 
                   <div className="flex items-center gap-2 text-gray-500">
                     <FiClock />
-                    06:00–22:00
+                    08:00–24:00
                   </div>
 
                   <div className="font-semibold text-gray-800">
-                    OMR60/day
+                    OMR{lot.priceperday}/day
                   </div>
 
                 </div>

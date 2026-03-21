@@ -122,6 +122,7 @@ const BookingPage = () => {
       checkOutTime: BookingData.checkOutTime,
       vehicleNumber: BookingData.vehicleNumber,
       duration: BookingData.duration,
+      amount: BookingData.amount,
     };
     console.log(finalBookingData);
     const existingBookings =
@@ -135,7 +136,7 @@ const BookingPage = () => {
 
     console.log("Saved Booking:", finalBookingData);
     alert("Booking Confirmed!");
-    navigate(`/booking-confirmation/${id}/${slotId}`);
+    navigate(`/booking-confirmation/${finalBookingData.id}`);
   }
 
   return (
