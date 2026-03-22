@@ -23,6 +23,7 @@ const ParkingCard = () => {
   const searchQuery = useSelector(
     (state) => state.parking.searchQuery
   );
+  const currentUser = useSelector((state) => state.auth.loggedinUser);
   const favorites = useSelector(state => state.favorites.favorites);
 
   const handleClick = (lot) => {
@@ -97,18 +98,20 @@ const ParkingCard = () => {
                 </div>
 
                 
-                <button
-                  onClick={(e) => { e.stopPropagation(); dispatch(toggleFavorite(lot)); }}
-                  className="absolute top-3 right-3 p-2 rounded-full bg-white/80 backdrop-blur-md shadow-md hover:scale-110 transition"
-                >
-                  <FiHeart
-                    size={20}
-                    className={`transition ${isFav
-                      ? "text-red-500 fill-red-500"
-                      : "text-gray-400"
-                      }`}
-                  />
-                </button>
+                {currentUser && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); dispatch(toggleFavorite(lot)); }}
+                    className="absolute top-3 right-3 p-2 rounded-full bg-white/80 backdrop-blur-md shadow-md hover:scale-110 transition"
+                  >
+                    <FiHeart
+                      size={20}
+                      className={`transition ${isFav
+                        ? "text-red-500 fill-red-500"
+                        : "text-gray-400"
+                        }`}
+                    />
+                  </button>
+                )}
 
               </div>
 

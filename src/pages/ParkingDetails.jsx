@@ -16,6 +16,7 @@ const ParkingDetails = () => {
     const parking = useSelector(
         (state) => state.parking.selectedParking
     );
+    const currentUser = useSelector((state) => state.auth.loggedinUser);
     const favorites = useSelector((state) => state.favorites.favorites);
     const showAuth = useSelector((state) => state.auth.showAuthModal);
     const isFav = favorites.some(item => item.id === parking?.id);
@@ -29,15 +30,17 @@ const ParkingDetails = () => {
                 {parking?.name && (
                     <div className="relative">
                         <img src={parking.image} alt={parking.name} className="w-full h-94 object-cover rounded-lg mt-6" />
-                        <button
-                            onClick={() => dispatch(toggleFavorite(parking))}
-                            className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:scale-110 transition-transform"
-                        >
-                            <FiHeart
-                                className={`text-xl ${isFav ? "text-red-500 fill-red-500" : "text-gray-500"}`}
-                                style={{ fill: isFav ? "currentColor" : "none" }}
-                            />
-                        </button>
+                        {currentUser && (
+                            <button
+                                onClick={() => dispatch(toggleFavorite(parking))}
+                                className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:scale-110 transition-transform"
+                            >
+                                <FiHeart
+                                    className={`text-xl ${isFav ? "text-red-500 fill-red-500" : "text-gray-500"}`}
+                                    style={{ fill: isFav ? "currentColor" : "none" }}
+                                />
+                            </button>
+                        )}
                     </div>
                 )}
 
