@@ -6,7 +6,6 @@ import { setParkingLots } from '../features/parkingSlice';
 import { setShowAuthModal } from '../features/authSlice';
 import SearchBar from '../components/SearchBar';
 import ParkingCard from '../components/ParkingCard';
-import FilterBar from '../components/FilterBar';
 import Navbar from '../components/Navbar';
 import SubNavbar from '../components/SubNavbar';
 import { setShowFilterSidebar } from '../features/parkingSlice';

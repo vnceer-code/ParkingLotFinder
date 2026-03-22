@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowAuthModal } from "../features/authSlice";
+
 
 const SlotGrid = () => {
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const [slots, setSlots] = useState([]);
+  const loggedinUser = useSelector((state) => state.auth.loggedinUser);
   const parking = useSelector(
     (state) => state.parking.selectedParking
-  )
+  );
 
   function generateSlots(totalSlots) {
     console.log(totalSlots);
@@ -30,6 +34,11 @@ const SlotGrid = () => {
 
   const handleSlotClick = (slotId) => {
 
+    if (!loggedinUser) {
+      dispatch(setShowAuthModal(true));
+      return;
+    }
+
     navigate(`/parking/${id}/booking/${slotId}`);
 
   };
@@ -37,6 +46,7 @@ const SlotGrid = () => {
   useEffect(() => {
 
     const stored = JSON.parse(localStorage.getItem("parkingSlots")) || {};
+
 
     if (stored[id]) {
 
@@ -55,7 +65,7 @@ const SlotGrid = () => {
 
     }
 
-  }, [id])
+  }, [id, parking])
 
   return (
 

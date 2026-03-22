@@ -6,6 +6,8 @@ import Navbar from "../components/Navbar";
 import { FiMapPin, FiHeart } from "react-icons/fi";
 import { useParams } from "react-router-dom";
 import { toggleFavorite } from "../features/favoriteSlice";
+import AuthModal from "../components/AuthModal";
+import { setShowAuthModal } from "../features/authSlice";
 
 const ParkingDetails = () => {
 
@@ -13,8 +15,9 @@ const ParkingDetails = () => {
     const dispatch = useDispatch();
     const parking = useSelector(
         (state) => state.parking.selectedParking
-    )
+    );
     const favorites = useSelector((state) => state.favorites.favorites);
+    const showAuth = useSelector((state) => state.auth.showAuthModal);
     const isFav = favorites.some(item => item.id === parking?.id);
     const availableSlots = getAvailableSlots(parking.id)
 
@@ -81,6 +84,10 @@ const ParkingDetails = () => {
 
 
                 <SlotGrid />
+
+                {showAuth && (
+                    <AuthModal closeModal={() => dispatch(setShowAuthModal(false))} />
+                )}
 
             </div>
         </>
