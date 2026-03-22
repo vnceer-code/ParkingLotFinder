@@ -28,7 +28,8 @@ const Navbar = () => {
 
           <h1 className="text-xl font-bold flex items-center gap-2">
             <img src={logo} alt="ParkFinder Logo" className="h-8 w-8" />
-            ParkFinder
+             <span className="hidden md:block"> ParkFinder</span>
+            
           </h1>
           <div className="w-1/3 ">
             <SearchBar />
@@ -36,14 +37,14 @@ const Navbar = () => {
           {currentUser ? (<div className="flex gap-4">
             <button className="flex items-center text-gray-600 relative gap-2  focus:bg-gray-100 cursor-pointer px-4 py-2 rounded-lg hover:bg-gray-100 transition"
               onClick={() => {
-               navigate("/favourites")
+                navigate("/favourites")
               }
               }
             >
 
               <FiHeart className={favoriteCount > 0 ? "text-red-500 fill-red-500" : "text-gray-600"} />
 
-              Saved
+              <span className="hidden lg:block">Saved</span>
 
               {favoriteCount > 0 && (
                 <span className="min-w-5 h-5 px-1 absolute top-0 right-0 rounded-full bg-red-500 text-white text-xs font-semibold flex items-center justify-center">
@@ -60,8 +61,9 @@ const Navbar = () => {
             >
 
               <FiCalendar />
+              <span className="hidden lg:block">Bookings</span>
 
-              Bookings
+
 
             </button>
             <button onClick={() => { navigate("/") }} className="flex items-center text-gray-600 gap-2  focus:bg-gray-100 cursor-pointer px-4 py-2 rounded-lg hover:bg-gray-100 transition">
@@ -76,8 +78,8 @@ const Navbar = () => {
             >
 
               <FiLogOut />
-
-              Sign Out
+              <span className="hidden lg:block"> Sign Out</span>
+             
 
             </button>
           </div>) :
